@@ -1,7 +1,7 @@
 Mensajero
 =========
 
-Mensajero is an application to manager the SMS in the smartphone. Currently I'm learning, for this reason the project is too unstable.
+Mensajero is an application to management the SMS in the smartphone. Currently I'm learning, for this reason the project is too unstable.
 
 License
 -------
