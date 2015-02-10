@@ -21,6 +21,7 @@ public class SMSReceiver extends BroadcastReceiver {
                 messageReceive += SmsMessage.createFromPdu((byte[]) pdu).getMessageBody();
 
             Toast.makeText(context, messageReceive, Toast.LENGTH_LONG).show();
+            abortBroadcast();
         }
     }
 }

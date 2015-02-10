@@ -1,9 +1,15 @@
 package com.nullpoint.mensajero;
 
+import android.annotation.TargetApi;
+import android.content.Intent;
+import android.os.Build;
+import android.provider.Telephony;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -23,16 +29,26 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (item.getItemId() == R.id.action_settings)
             return true;
-        }
+        else
+            return super.onOptionsItemSelected(item);
+    }
 
-        return super.onOptionsItemSelected(item);
+    // @TargetApi(Build.VERSION_CODES.KITKAT)
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (Telephony.Sms.getDefaultSmsPackage(this).equals(getPackageName()))
+            Toast.makeText(this, "es el paquete por defecto", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, "NO es el paquete por defecto " + Telephony.Sms.getDefaultSmsPackage(this), Toast.LENGTH_SHORT).show();
+    }
+
+    public void setDefault(View view) {
+        Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
+        intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
+        startActivity(intent);
     }
 }
