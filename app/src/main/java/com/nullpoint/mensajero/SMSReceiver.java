@@ -1,4 +1,4 @@
-package com.nullpoint.mensajero.mensajero;
+package com.nullpoint.mensajero;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,20 +12,16 @@ public class SMSReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Bundle bundle = intent.getExtras();
-        SmsMessage[] msgs = null;
-        String messageReceive = "";
 
         if (bundle != null) {
             Object[] pdus = (Object[]) bundle.get("pdus");
-            msgs = new SmsMessage[pdus.length];
+            String messageReceive = "";
 
-            for (int i = 0; i < msgs.length; i++) {
-                msgs[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
-                messageReceive += msgs[i].getMessageBody().toString();
-                messageReceive += "\n";
-            }
+            for (Object pdu: pdus)
+                messageReceive += SmsMessage.createFromPdu((byte[]) pdu).getMessageBody();
 
             Toast.makeText(context, messageReceive, Toast.LENGTH_LONG).show();
+            abortBroadcast();
         }
     }
 }
