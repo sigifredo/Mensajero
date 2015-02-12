@@ -1,4 +1,4 @@
-package com.nullpoint.mensajero;
+package com.nullpoint.mensajero.gui.activities;
 
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
@@ -12,6 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+
+import com.nullpoint.mensajero.R;
+import com.nullpoint.mensajero.gui.fragments.NavigationDrawerFragment;
 
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -29,7 +32,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_activity);
+        setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -145,7 +148,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.fragment_main_activity, container, false);
+            return inflater.inflate(R.layout.fragment_main, container, false);
         }
 
         @Override
