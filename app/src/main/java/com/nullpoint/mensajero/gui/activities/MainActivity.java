@@ -1,10 +1,10 @@
 package com.nullpoint.mensajero.gui.activities;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
 import com.nullpoint.mensajero.R;
+import com.nullpoint.mensajero.gui.fragments.ContactsFragment;
 import com.nullpoint.mensajero.gui.fragments.NavigationDrawerFragment;
 
 
@@ -59,23 +60,24 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
-    }
+        Fragment fragment = null;
 
-    public void onSectionAttached(int number) {
-        switch (number) {
-        case 1:
+        switch (position) {
+        case 0:
             mTitle = getString(R.string.title_section1);
+            fragment = new ContactsFragment();
             break;
-        case 2:
+        case 1:
             mTitle = getString(R.string.title_section2);
             break;
-        case 3:
+        case 2:
             mTitle = getString(R.string.title_section3);
             break;
         }
+
+        if (fragment != null)
+            fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
     }
 
     public void restoreActionBar() {
@@ -102,10 +104,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_settings)
-            return true;
-        else
-            return super.onOptionsItemSelected(item);
+        return (item.getItemId() == R.id.action_settings || super.onOptionsItemSelected(item));
     }
 
     @Override
@@ -154,7 +153,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+            // ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
 
