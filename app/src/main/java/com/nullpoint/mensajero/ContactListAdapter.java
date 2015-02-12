@@ -50,7 +50,7 @@ public class ContactListAdapter extends BaseAdapter {
 
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.contact_item_layout, parent);
+            view = inflater.inflate(R.layout.contact_item_layout, null);
         }
 
         Contact contact = mContactList.get(position);

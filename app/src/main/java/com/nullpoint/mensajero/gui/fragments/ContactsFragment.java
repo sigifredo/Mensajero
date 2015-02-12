@@ -11,8 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 
+import com.nullpoint.mensajero.ContactListAdapter;
 import com.nullpoint.mensajero.R;
-import com.nullpoint.mensajero.gui.fragments.dummy.DummyContent;
 
 
 public class ContactsFragment extends Fragment implements AbsListView.OnItemClickListener {
@@ -41,7 +41,7 @@ public class ContactsFragment extends Fragment implements AbsListView.OnItemClic
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+        mAdapter = new ContactListAdapter(getActivity());
     }
 
     @Override
