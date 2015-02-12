@@ -15,18 +15,11 @@ public class ContactListAdapter extends BaseAdapter {
     private Context mContext;
     private List<Contact> mContactList;
 
-    public ContactListAdapter(Context context) {
+    public ContactListAdapter(Context context, List<Contact> contactsList) {
         mContext = context;
+
         mContactList = new ArrayList<>();
-
-        for (int i = 0; i < 10; i++) {
-            Contact tmp = new Contact();
-
-            tmp.setName("Name " + (i+1));
-            tmp.setLastSms("Last message...");
-
-            mContactList.add(tmp);
-        }
+        mContactList.addAll(contactsList);
     }
 
     @Override
@@ -63,7 +56,22 @@ public class ContactListAdapter extends BaseAdapter {
         return view;
     }
 
-    public class Contact {
+    public static List<Contact> getDummyList() {
+        List<Contact> contactList = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            Contact tmp = new Contact();
+
+            tmp.setName("Name " + (i+1));
+            tmp.setLastSms("Last message...");
+
+            contactList.add(tmp);
+        }
+
+        return contactList;
+    }
+
+    public static class Contact {
         private String mName;
         private String mLastSms;
 

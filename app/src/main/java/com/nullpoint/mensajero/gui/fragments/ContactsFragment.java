@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 
 import com.nullpoint.mensajero.ContactListAdapter;
@@ -41,7 +40,7 @@ public class ContactsFragment extends Fragment implements AbsListView.OnItemClic
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAdapter = new ContactListAdapter(getActivity());
+        mAdapter = new ContactListAdapter(getActivity(), ContactListAdapter.getDummyList());
     }
 
     @Override
