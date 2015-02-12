@@ -1,17 +1,17 @@
 package com.nullpoint.mensajero.gui.activities;
 
-import android.app.Activity;
+import android.content.Intent;
+import android.provider.Telephony;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.view.View;
+import android.widget.Toast;
 
 import com.nullpoint.mensajero.R;
 import com.nullpoint.mensajero.gui.fragments.ContactsFragment;
@@ -36,10 +36,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
-
-        // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+        mTitle = getTitle();
 
         // Cursor in the sms
         /*
@@ -70,9 +68,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             break;
         case 1:
             mTitle = getString(R.string.title_section2);
+            fragment = new Fragment();
             break;
         case 2:
             mTitle = getString(R.string.title_section3);
+            fragment = new Fragment();
             break;
         }
 
@@ -86,7 +86,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,58 +110,18 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     public void onResume() {
         super.onResume();
 
-        // know if the application is default application to management sms
-        /*
         if (Telephony.Sms.getDefaultSmsPackage(this).equals(getPackageName()))
             Toast.makeText(this, "es el paquete por defecto", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "NO es el paquete por defecto " + Telephony.Sms.getDefaultSmsPackage(this), Toast.LENGTH_SHORT).show();
-        */
     }
 
     /**
-     * A placeholder fragment containing a simple view.
+     * Set the application as default to read sms.
      */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.fragment_main, container, false);
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            // ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
-        }
-    }
-
-    // Set the application as default to read sms
-    /*
     public void setDefault(View view) {
         Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
         intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
         startActivity(intent);
     }
-    */
 }

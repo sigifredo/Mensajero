@@ -17,6 +17,7 @@ import com.nullpoint.mensajero.gui.fragments.dummy.DummyContent;
 
 public class ContactsFragment extends Fragment implements AbsListView.OnItemClickListener {
 
+    private OnContactInteraction mListener;
     /**
      * The fragment's ListView/GridView.
      */
@@ -33,6 +34,7 @@ public class ContactsFragment extends Fragment implements AbsListView.OnItemClic
      * fragment (e.g. upon screen orientation changes).
      */
     public ContactsFragment() {
+        mListener = null;
     }
 
     @Override
@@ -72,18 +74,16 @@ public class ContactsFragment extends Fragment implements AbsListView.OnItemClic
     @Override
     public void onDetach() {
         super.onDetach();
-        // mListener = null;
+        mListener = null;
     }
-
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        /*
-        if (null != mListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
-        }
-        */
+        if (null != mListener)
+            mListener.onContactSelected();
+    }
+
+    public interface OnContactInteraction {
+        public void onContactSelected();
     }
 }
