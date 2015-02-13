@@ -11,9 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
-import android.widget.Toast;
 
-import com.nullpoint.mensajero.ChatActivity;
 import com.nullpoint.mensajero.R;
 import com.nullpoint.mensajero.gui.fragments.ContactsFragment;
 import com.nullpoint.mensajero.gui.fragments.NavigationDrawerFragment;

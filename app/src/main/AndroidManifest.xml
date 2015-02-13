@@ -27,7 +27,7 @@
         </receiver>
 
         <activity
-            android:name=".ChatActivity"
+            android:name=".gui.activities.ChatActivity"
             android:label="@string/title_activity_chat" >
         </activity>
     </application>
