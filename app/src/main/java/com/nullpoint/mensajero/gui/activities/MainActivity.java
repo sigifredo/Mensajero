@@ -13,12 +13,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.Toast;
 
+import com.nullpoint.mensajero.ChatActivity;
 import com.nullpoint.mensajero.R;
 import com.nullpoint.mensajero.gui.fragments.ContactsFragment;
 import com.nullpoint.mensajero.gui.fragments.NavigationDrawerFragment;
 
 
-public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, ContactsFragment.OnContactInteraction {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -110,10 +111,12 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     public void onResume() {
         super.onResume();
 
-        if (Telephony.Sms.getDefaultSmsPackage(this).equals(getPackageName()))
-            Toast.makeText(this, "es el paquete por defecto", Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(this, "NO es el paquete por defecto " + Telephony.Sms.getDefaultSmsPackage(this), Toast.LENGTH_SHORT).show();
+        /*
+                if (Telephony.Sms.getDefaultSmsPackage(this).equals(getPackageName()))
+                    Toast.makeText(this, "es el paquete por defecto", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(this, "NO es el paquete por defecto " + Telephony.Sms.getDefaultSmsPackage(this), Toast.LENGTH_SHORT).show();
+        */
     }
 
     /**
@@ -123,5 +126,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
         intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
         startActivity(intent);
+    }
+
+    @Override
+    public void onContactSelected() {
+        startActivity(new Intent(this, ChatActivity.class));
     }
 }
