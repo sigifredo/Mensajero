@@ -5,17 +5,16 @@
     android:layout_height="match_parent">
 
     <ListView
-        android:id="@+id/lvChat"
+        android:id="@+id/chat_list"
         android:transcriptMode="alwaysScroll"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_above="@+id/llSend"
-        android:layout_width="wrap_content"
+        android:layout_above="@+id/send_layout"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent" />
 
     <RelativeLayout
-        android:id="@+id/llSend"
+        android:id="@+id/send_layout"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:background="#ffffff"
@@ -26,9 +25,9 @@
         android:layout_height="wrap_content" >
 
         <EditText
-            android:id="@+id/etMessage"
-            android:layout_toLeftOf="@+id/btSend"
-            android:layout_alignBottom="@+id/btSend"
+            android:id="@+id/message"
+            android:layout_toLeftOf="@+id/send"
+            android:layout_alignBottom="@+id/send"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top"
@@ -36,7 +35,7 @@
             android:inputType="textShortMessage"
             android:imeOptions="actionSend"/>
         <Button
-            android:id="@+id/btSend"
+            android:id="@+id/send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|right"
