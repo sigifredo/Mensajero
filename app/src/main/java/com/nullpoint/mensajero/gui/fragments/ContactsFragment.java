@@ -60,14 +60,12 @@ public class ContactsFragment extends Fragment implements AbsListView.OnItemClic
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        /*
+
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (OnContactInteraction) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+            throw new ClassCastException(activity.toString() + " must implement OnFragmentInteractionListener");
         }
-        */
     }
 
     @Override
